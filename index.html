@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWXH1573DP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MWXH1573DP');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全ツッパずんだもん【公式HP】</title>
+    <meta name="description" content="遺産の500万円をレバナス（レバレッジNASDAQ100）に全ツッパしたらどうなるのか検証してみるチャンネルなのだ。ついでに貯金の50万円もレバレッジFANG+に全ツッパしてみたのだ。">
+    <link rel="canonical" href="https://scream.jp">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/192.png">
+    <!-- PWA用 -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/192.png">
+    <meta name="theme-color" content="#000000">
+    <!-- iOS対応用 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="全ツッパずんだもん">
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3535113736934038"
+     crossorigin="anonymous"></script>
+</head>
+<body class="dark-mode">
+    <canvas id="fireworkCanvas"></canvas>
+    <div class="header">
+        <div class="header-icon" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- <div class="header-logo">
+            <img src="assets/logo.JPG" alt="Logo" class="logo">
+        </div> -->
+        <button class="header-logo" onclick="createFirework()">
+            <img src="assets/logo.JPG" alt="Logo" class="logo">
+        </button>
+        <div class="header-icon" id="settingsBtn">
+            <i class="fas fa-gear"></i>
+        </div>
+    </div>
+    <div class="content">
+        <div class="tab-content active" id="homeTab">
+            <div class="album-container">
+                <div class="image-card" id="imageCard">
+                    <h3 class="image-info" id="imageInfo">
+                        画像 1/1
+                    </h3>
+                    <div class="image-container">
+                        <img id="albumImage" src="/api/placeholder/400/300" alt="アルバム画像" class="album-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="chartTab">
+            <div class="chart-container">
+                <div class="ad-notification">
+                    <a href="https://www.amazon.jp/hz/wishlist/ls/3PCI7BGUTXK7Z?ref_=wl_share" target="_blank">ほしい物リスト</a>
+                </div>
+                <div class="scroll-container">
+                    <iframe width="600" height="371" seamless frameborder="0" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSKX93mMSxPcvZFj2CMb_zhaKqV9w6sIGYyGeVt36dtVRDjoXkKgLA0nawtKJBNmx7-4pNq5adn8eQt/pubchart?oid=741224493&amp;format=interactive"></iframe>
+                </div>
+                <div class="legend">
+                    <div>
+                        <span class="line color1"></span> 500万円　
+                        <span class="line color2"></span> 50万円　
+                        <span class="line color3"></span> 550万円　
+                        <span class="line color4"></span> 資産合計　
+                        <span class="line color5"></span> レバNASDAQ100　
+                        <span class="line color6"></span> レバFANG+　
+                        </div>
+                    </div>
+                <div class="ad-notification">
+                    <details class="toc">
+                        <summary>目次</summary>
+                        <ul>
+                            <li><a href="#section1">レバレッジNASDAQ100（H無）</a></li>
+                            <li><a href="#section2">レバレッジFANG+（H有）</a></li>
+                            <li><a href="#section3">チャンネル登録者数　推移</a></li>
+                        </ul>
+                    </details>
+                </div>
+                <div class="ad-notification" id="section1">
+                    レバレッジNASDAQ100（H無）
+                </div>
+                <div class="scroll-container">
+                    <iframe width="600" height="371" seamless frameborder="0" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSKX93mMSxPcvZFj2CMb_zhaKqV9w6sIGYyGeVt36dtVRDjoXkKgLA0nawtKJBNmx7-4pNq5adn8eQt/pubchart?oid=846203721&amp;format=interactive"></iframe>
+                </div>
+                <div class="ad-notification" id="section2">
+                    レバレッジFANG+（H有）
+                </div>
+                <div class="scroll-container">
+                    <iframe width="600" height="371" seamless frameborder="0" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSKX93mMSxPcvZFj2CMb_zhaKqV9w6sIGYyGeVt36dtVRDjoXkKgLA0nawtKJBNmx7-4pNq5adn8eQt/pubchart?oid=1084389314&amp;format=interactive"></iframe>
+                </div>
+                <div class="ad-notification" id="section3">
+                    全ツッパずんだもん　チャンネル登録者数　推移
+                </div>
+                <div class="scroll-container">
+                    <iframe width="600" height="371" seamless frameborder="0" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSKX93mMSxPcvZFj2CMb_zhaKqV9w6sIGYyGeVt36dtVRDjoXkKgLA0nawtKJBNmx7-4pNq5adn8eQt/pubchart?oid=179424977&amp;format=interactive"></iframe>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="tab-content" id="searchTab">
+            <div class="ad-notification">
+                【広告】
+            </div>
+            <div class="gallery" id="imageGallery"></div>
+        </div>
+
+        <div class="tab-content" id="adTab">
+            <div class="ad-notification">
+                <a href="https://www.amazon.jp/hz/wishlist/ls/3PCI7BGUTXK7Z?ref_=wl_share" target="_blank">ほしい物リスト</a>
+            </div>
+            <div class="ad-notification">
+                【PR】<a href="https://px.a8.net/svt/ejp?a8mat=3ZLYN8+5O7Q1M+5LNQ+5YJRM" rel="nofollow">メルカリ</a>
+<img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=3ZLYN8+5O7Q1M+5LNQ+5YJRM" alt="">
+            </div>
+            <div class="gallery" id="itemGrid">
+            </div>
+        </div>
+        
+        <div class="tab-content" id="notificationsTab">
+            <div class="notifications-container">
+                <div class="notification-item">
+                    <div class="notification-title">iPhoneユーザーへお知らせ！</div>
+                    <div class="notification-date">2025年5月1日</div>
+                    <div class="notification-content">
+                        <img src="assets/noti250104.png" class="notification-image" alt="">
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-title">Androidユーザーへのお知らせ！</div>
+                    <div class="notification-date">2025年5月1日</div>
+                    <div class="notification-content">
+                        <img src="assets/noti250102.jpg" class="notification-image" alt="">
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-title">ほしい物リスト！</div>
+                    <div class="notification-date">2025年5月1日</div>
+                    <div class="notification-content">
+                        <img src="assets/noti250501.png" class="notification-image" alt=""></a>
+                        詳しくは<a href="https://www.amazon.jp/hz/wishlist/ls/3PCI7BGUTXK7Z?ref_=wl_share" target="_blank">こちら</a>なのだ。
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-title">ファンアート募集！</div>
+                    <div class="notification-date">2025年4月1日</div>
+                    <div class="notification-content">
+                        <img src="assets/noti250401.png" class="notification-image" alt="">
+                        元データは<a href="assets/logo.JPG" target="_blank">ここ</a>なのだ。ChatGPTで使えるのだ。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-nav">
+        <div class="nav-item active" data-tab="homeTab">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="nav-item" data-tab="chartTab">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="nav-item" data-tab="searchTab">
+            <i class="fas fa-magnifying-glass"></i>
+        </div>
+        <div class="nav-item" data-tab="adTab">
+            <i class="fas fa-database"></i>
+        </div>
+        <div class="nav-item" data-tab="notificationsTab">
+            <i class="fas fa-bell"></i>
+        </div>
+    </div>
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <div class="menu-header">
+            <div class="menu-close hamburger-menu-close" id="menuCloseBtn">閉じる</div>
+        </div>
+        <div class="hamburger-menu-item">
+            <div class="menu-item"><a href="https://www.youtube.com/channel/UCIQNl4_vttIx1Uhnz5FIS1Q" target="_blank"><i class="fab fa-youtube"></i>　YouTube</a></div>
+            <div class="menu-item"><a href="https://x.com/zen28z" target="_blank"><i class="fab fa-twitter"></i>　Twitter</a></div>
+            <div class="menu-item notification-date"><br>Amazon のアソシエイトとして、当サイト（scream.jp）は適格販売により収入を得ています。</div>
+            <div class="menu-item notification-date"><br>当サイトはGoogle Analyticsを利用しています。</div>
+            <div class="menu-item notification-date"><br>&copy;2025 全ツッパずんだもん</div>
+        </div>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="popup message-popup" id="messagePopup">
+        <div id="popupMessage"></div>
+    </div>
+    <div class="popup settings-popup" id="settingsPopup">
+        <div class="popup-header">
+            <h3>使い方</h3>
+        </div>
+        <div class="setting-item">
+            <img src="assets/guide.png" style="width: 100%; height: auto;" alt="">
+        </div>
+        <div class="popup-header">
+            <h3>設定</h3>
+            <!-- <div class="menu-close" id="settingsCloseBtn">✕</div> -->
+        </div>
+        <div class="setting-item">
+            <span>テーマ</span>
+            <div class="mode-toggle" id="modeToggle"><i class="fas fa-moon"></i></div>
+        </div>
+        <div class="setting-item">
+            <span>グループ</span>
+            <select class="group-selector" id="groupSelector">
+                <option value="2025-02">2025年2月</option>
+                <option value="2025-03">2025年3月</option>
+                <option value="2025-04">2025年4月</option>
+                <option value="2025-05">2025年5月</option>
+                <option value="2025-06">2025年6月</option>
+                <option value="2025-07">2025年7月</option>
+                <option value="2025-08">2025年8月</option>
+                <option value="2025-09">2025年9月</option>
+                <option value="2025-10" selected>2025年10月</option>
+            </select>
+        </div>
+        <div class="menu-close setting-menu-close" id="settingsCloseBtn">閉じる</div>
+    </div>
+    <script src="script4.js"></script>
+    <script>
+    const albumData = {
+        "2025-02": [
+            { src: "https://scream.jp/images/Screenshot_20250211.jpg", info: "2025年2月10日" },
+            { src: "https://scream.jp/images/Screenshot_20250213.jpg", info: "2025年2月12日" },
+            { src: "https://scream.jp/images/Screenshot_20250214.jpg", info: "2025年2月13日" },
+            { src: "https://scream.jp/images/Screenshot_20250215.jpg", info: "2025年2月14日" },
+            { src: "https://scream.jp/images/Screenshot_20250218.jpg", info: "2025年2月17日" },
+            { src: "https://scream.jp/images/Screenshot_20250219.jpg", info: "2025年2月18日" },
+            { src: "https://scream.jp/images/Screenshot_20250220.jpg", info: "2025年2月19日" },
+            { src: "https://scream.jp/images/Screenshot_20250221.jpg", info: "2025年2月20日" },
+            { src: "https://scream.jp/images/Screenshot_20250222.jpg", info: "2025年2月21日" },
+            { src: "https://scream.jp/images/Screenshot_20250226.jpg", info: "2025年2月25日" },
+            { src: "https://scream.jp/images/Screenshot_20250227.jpg", info: "2025年2月26日" },
+            {src: "https://scream.jp/images/Screenshot_20250228.jpg", info: "2025年2月27日" },
+            { src: "https://scream.jp/images/Screenshot_20250301.jpg", info: "2025年2月28日" }
+        ],
+        "2025-03": [
+            { src: "https://scream.jp/images/Screenshot_20250304.jpg", info: "2025年3月3日" },
+            { src: "https://scream.jp/images/Screenshot_20250305.jpg", info: "2025年3月4日" },
+            { src: "https://scream.jp/images/Screenshot_20250306.jpg", info: "2025年3月5日" },
+            { src: "https://scream.jp/images/Screenshot_20250307.jpg", info: "2025年3月6日" },
+            { src: "https://scream.jp/images/Screenshot_20250308.jpg", info: "2025年3月7日" },
+            { src: "https://scream.jp/images/Screenshot_20250311.jpg", info: "2025年3月10日" },
+            { src: "https://scream.jp/images/Screenshot_20250312.jpg", info: "2025年3月11日" },
+            { src: "https://scream.jp/images/Screenshot_20250313.jpg", info: "2025年3月12日" },
+            { src: "https://scream.jp/images/Screenshot_20250314.jpg", info: "2025年3月13日" },
+            { src: "https://scream.jp/images/Screenshot_20250315.jpg", info: "2025年3月14日" },
+            { src: "https://scream.jp/images/Screenshot_20250318.jpg", info: "2025年3月17日" },
+            { src: "https://scream.jp/images/Screenshot_20250319.jpg", info: "2025年3月18日" },
+            { src: "https://scream.jp/images/Screenshot_20250320.jpg", info: "2025年3月19日" },
+            { src: "https://scream.jp/images/Screenshot_20250322.jpg", info: "2025年3月21日" },
+            { src: "https://scream.jp/images/Screenshot_20250325.jpg", info: "2025年3月24日" },
+            { src: "https://scream.jp/images/Screenshot_20250326.jpg", info: "2025年3月25日" },
+            { src: "https://scream.jp/images/Screenshot_20250327.jpg", info: "2025年3月26日" },
+            { src: "https://scream.jp/images/Screenshot_20250328.jpg", info: "2025年3月27日" },
+            { src: "https://scream.jp/images/Screenshot_20250329.jpg", info: "2025年3月28日" },
+            { src: "https://scream.jp/images/Screenshot_20250401.jpg", info: "2025年3月31日" }
+        ],
+        "2025-04": [
+            { src: "https://scream.jp/images/Screenshot_20250402.jpg", info: "2025年4月1日" },
+            { src: "https://scream.jp/images/Screenshot_20250403.jpg", info: "2025年4月2日" },
+            { src: "https://scream.jp/images/Screenshot_20250404.jpg", info: "2025年4月3日" },
+            { src: "https://scream.jp/images/Screenshot_20250405.jpg", info: "2025年4月4日" },
+            { src: "https://scream.jp/images/Screenshot_20250408.jpg", info: "2025年4月7日" },
+            { src: "https://scream.jp/images/Screenshot_20250409.jpg", info: "2025年4月8日" },
+            { src: "https://scream.jp/images/Screenshot_20250410.jpg", info: "2025年4月9日" },
+            { src: "https://scream.jp/images/Screenshot_20250411.jpg", info: "2025年4月10日" },
+            { src: "https://scream.jp/images/Screenshot_20250412.jpg", info: "2025年4月11日" },
+            { src: "https://scream.jp/images/Screenshot_20250415.jpg", info: "2025年4月14日" },
+            { src: "https://scream.jp/images/Screenshot_20250416.jpg", info: "2025年4月15日" },
+            { src: "https://scream.jp/images/Screenshot_20250417.jpg", info: "2025年4月16日" },
+            { src: "https://scream.jp/images/Screenshot_20250418.jpg", info: "2025年4月17日" },
+            { src: "https://scream.jp/images/Screenshot_20250419.jpg", info: "2025年4月18日" },
+            { src: "https://scream.jp/images/Screenshot_20250422.jpg", info: "2025年4月21日" },
+            { src: "https://scream.jp/images/Screenshot_20250423.jpg", info: "2025年4月22日" },
+            { src: "https://scream.jp/images/Screenshot_20250424.jpg", info: "2025年4月23日" },
+            { src: "https://scream.jp/images/Screenshot_20250425.jpg", info: "2025年4月24日" },
+            { src: "https://scream.jp/images/Screenshot_20250426.jpg", info: "2025年4月25日" },
+            { src: "https://scream.jp/images/Screenshot_20250429.jpg", info: "2025年4月28日" },
+            { src: "https://scream.jp/images/Screenshot_20250501.jpg", info: "2025年4月30日" },
+        
+        ],
+        "2025-05": [
+            { src: "https://scream.jp/images/Screenshot_20250502.jpg", info: "2025年5月1日" },
+            { src: "https://scream.jp/images/Screenshot_20250503.jpg", info: "2025年5月2日" },
+            { src: "https://scream.jp/images/Screenshot_20250508.jpg", info: "2025年5月7日" },
+            { src: "https://scream.jp/images/Screenshot_20250509.jpg", info: "2025年5月8日" },
+            { src: "https://scream.jp/images/Screenshot_20250510.jpg", info: "2025年5月9日" },
+            { src: "https://scream.jp/images/Screenshot_20250513.jpg", info: "2025年5月12日" },
+            { src: "https://scream.jp/images/Screenshot_20250514.jpg", info: "2025年5月13日" },
+            { src: "https://scream.jp/images/Screenshot_20250515.jpg", info: "2025年5月14日" },
+            { src: "https://scream.jp/images/Screenshot_20250516.jpg", info: "2025年5月15日" },
+            { src: "https://scream.jp/images/Screenshot_20250517.jpg", info: "2025年5月16日" },
+            { src: "https://scream.jp/images/Screenshot_20250520.jpg", info: "2025年5月19日" },
+            { src: "https://scream.jp/images/Screenshot_20250521.jpg", info: "2025年5月20日" },
+            { src: "https://scream.jp/images/Screenshot_20250522.jpg", info: "2025年5月21日" },
+            { src: "https://scream.jp/images/Screenshot_20250523.jpg", info: "2025年5月22日" },
+            { src: "https://scream.jp/images/Screenshot_20250524.jpg", info: "2025年5月23日" },
+            { src: "https://scream.jp/images/Screenshot_20250527.jpg", info: "2025年5月26日" },
+            { src: "https://scream.jp/images/Screenshot_20250528.jpg", info: "2025年5月27日" },
+            { src: "https://scream.jp/images/Screenshot_20250529.jpg", info: "2025年5月28日" },
+            { src: "https://scream.jp/images/Screenshot_20250530.jpg", info: "2025年5月29日" },
+            { src: "https://scream.jp/images/Screenshot_20250531.jpg", info: "2025年5月30日" }
+            
+        ],
+        "2025-06": [
+            { src: "https://scream.jp/images/Screenshot_20250603.jpg", info: "2025年6月2日" },
+            { src: "https://scream.jp/images/Screenshot_20250604.jpg", info: "2025年6月3日" },
+            { src: "https://scream.jp/images/Screenshot_20250605.jpg", info: "2025年6月4日" },
+            { src: "https://scream.jp/images/Screenshot_20250606.jpg", info: "2025年6月5日" },
+            { src: "https://scream.jp/images/Screenshot_20250607.jpg", info: "2025年6月6日" },
+            { src: "https://scream.jp/images/Screenshot_20250610.jpg", info: "2025年6月9日" },
+            { src: "https://scream.jp/images/Screenshot_20250611.jpg", info: "2025年6月10日" },
+            { src: "https://scream.jp/images/Screenshot_20250612.jpg", info: "2025年6月11日" },
+            { src: "https://scream.jp/images/Screenshot_20250613.jpg", info: "2025年6月12日" },
+            { src: "https://scream.jp/images/Screenshot_20250614.jpg", info: "2025年6月13日" },
+            { src: "https://scream.jp/images/Screenshot_20250617.jpg", info: "2025年6月16日" },
+            { src: "https://scream.jp/images/Screenshot_20250618.jpg", info: "2025年6月17日" },
+            { src: "https://scream.jp/images/Screenshot_20250619.jpg", info: "2025年6月18日" },
+            { src: "https://scream.jp/images/Screenshot_20250620.jpg", info: "2025年6月19日" },
+            { src: "https://scream.jp/images/Screenshot_20250621.jpg", info: "2025年6月20日" },
+            { src: "https://scream.jp/images/Screenshot_20250624.jpg", info: "2025年6月23日" },
+            { src: "https://scream.jp/images/Screenshot_20250625.jpg", info: "2025年6月24日" },
+            { src: "https://scream.jp/images/Screenshot_20250626.jpg", info: "2025年6月25日" },
+            { src: "https://scream.jp/images/Screenshot_20250627.jpg", info: "2025年6月26日" },
+            { src: "https://scream.jp/images/Screenshot_20250628.jpg", info: "2025年6月27日" },
+            { src: "https://scream.jp/images/Screenshot_20250701.jpg", info: "2025年6月30日" }
+            
+        ],
+        "2025-07": [
+            { src: "https://scream.jp/images/Screenshot_20250702.jpg", info: "2025年7月1日" },
+            { src: "https://scream.jp/images/Screenshot_20250703.jpg", info: "2025年7月2日" },
+            { src: "https://scream.jp/images/Screenshot_20250704.jpg", info: "2025年7月3日" },
+            { src: "https://scream.jp/images/Screenshot_20250705.jpg", info: "2025年7月4日" },
+            { src: "https://scream.jp/images/Screenshot_20250708.jpg", info: "2025年7月7日" },
+            { src: "https://scream.jp/images/Screenshot_20250709.jpg", info: "2025年7月8日" },
+            { src: "https://scream.jp/images/Screenshot_20250710.jpg", info: "2025年7月9日" },
+            { src: "https://scream.jp/images/Screenshot_20250711.jpg", info: "2025年7月10日" },
+            { src: "https://scream.jp/images/Screenshot_20250712.jpg", info: "2025年7月11日" },
+            { src: "https://scream.jp/images/Screenshot_20250715.jpg", info: "2025年7月14日" },
+            { src: "https://scream.jp/images/Screenshot_20250716.jpg", info: "2025年7月15日" },
+            { src: "https://scream.jp/images/Screenshot_20250717.jpg", info: "2025年7月16日" },
+            { src: "https://scream.jp/images/Screenshot_20250718.jpg", info: "2025年7月17日" },
+            { src: "https://scream.jp/images/Screenshot_20250719.jpg", info: "2025年7月18日" },
+            { src: "https://scream.jp/images/Screenshot_20250723.jpg", info: "2025年7月22日" },
+            { src: "https://scream.jp/images/Screenshot_20250724.jpg", info: "2025年7月23日" },
+            { src: "https://scream.jp/images/Screenshot_20250725.jpg", info: "2025年7月24日" },
+            { src: "https://scream.jp/images/Screenshot_20250726.jpg", info: "2025年7月25日" },
+            { src: "https://scream.jp/images/Screenshot_20250729.jpg", info: "2025年7月28日" },
+            { src: "https://scream.jp/images/Screenshot_20250730.jpg", info: "2025年7月29日" },
+            { src: "https://scream.jp/images/Screenshot_20250731.jpg", info: "2025年7月30日" },
+            { src: "https://scream.jp/images/Screenshot_20250801.jpg", info: "2025年7月31日" },
+            
+        ],
+        "2025-08": [
+            { src: "https://scream.jp/images/Screenshot_20250802.jpg", info: "2025年8月1日" },
+            { src: "https://scream.jp/images/Screenshot_20250805.jpg", info: "2025年8月4日" },
+            { src: "https://scream.jp/images/Screenshot_20250806.jpg", info: "2025年8月5日" },
+            { src: "https://scream.jp/images/Screenshot_20250807.jpg", info: "2025年8月6日" },
+            { src: "https://scream.jp/images/Screenshot_20250808.jpg", info: "2025年8月7日" },
+            { src: "https://scream.jp/images/Screenshot_20250809.jpg", info: "2025年8月8日" },
+            { src: "https://scream.jp/images/Screenshot_20250813.jpg", info: "2025年8月12日" },
+            { src: "https://scream.jp/images/Screenshot_20250814.jpg", info: "2025年8月13日" },
+            { src: "https://scream.jp/images/Screenshot_20250815.jpg", info: "2025年8月14日" },
+            { src: "https://scream.jp/images/Screenshot_20250816.jpg", info: "2025年8月15日" },
+            { src: "https://scream.jp/images/Screenshot_20250819.jpg", info: "2025年8月18日" },
+            { src: "https://scream.jp/images/Screenshot_20250820.jpg", info: "2025年8月19日" },
+            { src: "https://scream.jp/images/Screenshot_20250821.jpg", info: "2025年8月20日" },
+            { src: "https://scream.jp/images/Screenshot_20250822.jpg", info: "2025年8月21日" },
+            { src: "https://scream.jp/images/Screenshot_20250823.jpg", info: "2025年8月22日" },
+            { src: "https://scream.jp/images/Screenshot_20250826.jpg", info: "2025年8月25日" },
+            { src: "https://scream.jp/images/Screenshot_20250827.jpg", info: "2025年8月26日" },
+            { src: "https://scream.jp/images/Screenshot_20250828.jpg", info: "2025年8月27日" },
+            { src: "https://scream.jp/images/Screenshot_20250829.jpg", info: "2025年8月28日" },
+            { src: "https://scream.jp/images/Screenshot_20250830.jpg", info: "2025年8月29日" },
+            
+        ],
+        "2025-09": [
+            { src: "https://scream.jp/images/Screenshot_20250902.jpg", info: "2025年9月1日" },
+            { src: "https://scream.jp/images/Screenshot_20250903.jpg", info: "2025年9月2日" },
+            { src: "https://scream.jp/images/Screenshot_20250904.jpg", info: "2025年9月3日" },
+            { src: "https://scream.jp/images/Screenshot_20250905.jpg", info: "2025年9月4日" },
+            { src: "https://scream.jp/images/Screenshot_20250906.jpg", info: "2025年9月5日" },
+            { src: "https://scream.jp/images/Screenshot_20250909.jpg", info: "2025年9月8日" },
+            { src: "https://scream.jp/images/Screenshot_20250910.jpg", info: "2025年9月9日" },
+            { src: "https://scream.jp/images/Screenshot_20250911.jpg", info: "2025年9月10日" },
+            { src: "https://scream.jp/images/Screenshot_20250912.jpg", info: "2025年9月11日" },
+            { src: "https://scream.jp/images/Screenshot_20250913.jpg", info: "2025年9月12日" },
+            { src: "https://scream.jp/images/Screenshot_20250917.jpg", info: "2025年9月16日" },
+            { src: "https://scream.jp/images/Screenshot_20250918.jpg", info: "2025年9月17日" },
+            { src: "https://scream.jp/images/Screenshot_20250919.jpg", info: "2025年9月18日" },
+            { src: "https://scream.jp/images/Screenshot_20250920.jpg", info: "2025年9月9日" },
+            { src: "https://scream.jp/images/Screenshot_20250923.jpg", info: "2025年9月22日" },
+            { src: "https://scream.jp/images/Screenshot_20250925.jpg", info: "2025年9月24日" },
+            { src: "https://scream.jp/images/Screenshot_20250926.jpg", info: "2025年9月25日" },
+            { src: "https://scream.jp/images/Screenshot_20250927.jpg", info: "2025年9月26日" },
+            { src: "https://scream.jp/images/Screenshot_20250930.jpg", info: "2025年9月29日" },
+            { src: "https://scream.jp/images/Screenshot_20250931.jpg", info: "2025年9月30日" },
+            
+        ],
+        "2025-10": [
+            { src: "https://scream.jp/images/Screenshot_20251002.jpg", info: "2025年10月1日" },
+            { src: "https://scream.jp/images/Screenshot_20251003.jpg", info: "2025年10月2日" },
+            { src: "https://scream.jp/images/Screenshot_20251004.jpg", info: "2025年10月3日" },
+            { src: "https://scream.jp/images/Screenshot_20251007.jpg", info: "2025年10月6日" },
+            { src: "https://scream.jp/images/Screenshot_20251008.jpg", info: "2025年10月7日" },
+            { src: "https://scream.jp/images/Screenshot_20251009.jpg", info: "2025年10月8日" },
+            
+            
+        ]
+    };
+    const groupOrder = ["2025-02", "2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10"];
+    let currentGroup = "2025-10";
+    let currentIndex = 0;
+    const imageCard = document.getElementById('imageCard');
+    const albumImage = document.getElementById('albumImage');
+    const imageInfo = document.getElementById('imageInfo');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuCloseBtn = document.getElementById('menuCloseBtn');
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPopup = document.getElementById('settingsPopup');
+    const settingsCloseBtn = document.getElementById('settingsCloseBtn');
+    const modeToggle = document.getElementById('modeToggle');
+    const groupSelector = document.getElementById('groupSelector');
+    const messagePopup = document.getElementById('messagePopup');
+    const popupMessage = document.getElementById('popupMessage');
+    const navItems = document.querySelectorAll('.nav-item');
+    updateImage();
+    let startX, startY, moveX, moveY;
+    let isMoving = false;
+    imageCard.addEventListener('touchstart', handleTouchStart, false);
+    imageCard.addEventListener('touchmove', handleTouchMove, false);
+    imageCard.addEventListener('touchend', handleTouchEnd, false);
+    imageCard.addEventListener('mousedown', handleMouseDown, false);
+    document.addEventListener('mousemove', handleMouseMove, false);
+    document.addEventListener('mouseup', handleMouseUp, false);
+
+    function handleTouchStart(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || 
+            e.target.tagName === 'TEXTAREA' || isScrollableElement(e.target)) {
+            return;
+        }
+        startTouchOrClick(e.touches[0].clientX, e.touches[0].clientY);
+    }
+
+    function isScrollableElement(element) {
+        const style = window.getComputedStyle(element);
+        return (style.overflowY === 'auto' || style.overflowY === 'scroll') && 
+                element.scrollHeight > element.clientHeight;
+    }
+        
+    function handleMouseDown(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || 
+            e.target.tagName === 'TEXTAREA' || isScrollableElement(e.target)) {
+            return;
+        }
+        startTouchOrClick(e.clientX, e.clientY);
+        e.preventDefault();
+    }
+
+    function startTouchOrClick(x, y) {
+        startX = x;
+        startY = y;
+        isMoving = true;
+    }
+
+    function handleTouchMove(e) {
+        if (!isMoving) return;
+            
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = Math.abs(currentX - startX);
+        const diffY = Math.abs(currentY - startY);
+            
+        if (diffY > diffX) {
+            isMoving = false;
+            return;
+        }
+            
+        handleMove(currentX, currentY);
+        e.preventDefault();
+    }
+
+    function handleMouseMove(e) {
+        if (!isMoving) return;
+        handleMove(e.clientX, e.clientY);
+        e.preventDefault();
+    }
+
+    function handleMove(x, y) {
+        moveX = x - startX;
+        moveY = y - startY;
+            
+        if (Math.abs(moveX) > Math.abs(moveY)) {
+            const rotate = moveX * 0.2;
+            imageCard.style.transform = `translateX(${moveX}px) rotate(${rotate}deg)`;
+        }
+    }
+        
+    function handleTouchEnd(e) {
+        if (!isMoving) return;
+        finishTouchOrClick();
+    }
+        
+    function handleMouseUp(e) {
+        if (!isMoving) return;
+        finishTouchOrClick();
+        e.preventDefault();
+    }
+        
+    function finishTouchOrClick() {
+        isMoving = false;
+            
+        if (moveX > 50) {
+            createFirework()
+            navigateNext();
+        } else if (moveX < -50) {
+            createFirework()
+            navigatePrevious();
+        }
+            
+        imageCard.style.transform = 'translateX(0) rotate(0deg)';
+        moveX = 0;
+    }
+
+    function navigateNext() {
+        const currentImages = albumData[currentGroup];
+            
+        if (currentIndex < currentImages.length - 1) {
+            currentIndex++;
+            updateImage();
+        } else {
+            const currentGroupIndex = groupOrder.indexOf(currentGroup);
+            if (currentGroupIndex < groupOrder.length - 1) {
+                const nextGroup = groupOrder[currentGroupIndex + 1];
+                currentGroup = nextGroup;
+                currentIndex = 0;
+                groupSelector.value = currentGroup;
+                updateImage();
+                showMessage(`${nextGroup.substring(0, 4)}年${nextGroup.substring(5, 7)}月`);
+            } else {
+                showMessage("最後なのだ");
+            }
+        }
+    }
+
+    function navigatePrevious() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateImage();
+        } else {
+            const currentGroupIndex = groupOrder.indexOf(currentGroup);
+            if (currentGroupIndex > 0) {
+                const prevGroup = groupOrder[currentGroupIndex - 1];
+                currentGroup = prevGroup;
+                currentIndex = albumData[prevGroup].length - 1;
+                groupSelector.value = currentGroup;
+                updateImage();
+                showMessage(`${prevGroup.substring(0, 4)}年${prevGroup.substring(5, 7)}月`);
+            } else {
+                showMessage("最初なのだ");
+            }
+        }
+    }
+
+    function updateImage() {
+        const image = albumData[currentGroup][currentIndex];
+        albumImage.src = image.src;
+        imageInfo.textContent = image.info;
+    }
+
+    function showMessage(message) {
+        popupMessage.textContent = message;
+        messagePopup.style.display = 'block';
+            
+        setTimeout(() => {
+            messagePopup.style.display = 'none';
+        }, 1000);
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerMenu.classList.add('open');
+        menuOverlay.classList.add('open');
+    });
+
+    menuCloseBtn.addEventListener('click', () => {
+        hamburgerMenu.classList.remove('open');
+        menuOverlay.classList.remove('open');
+    });
+
+    menuOverlay.addEventListener('click', () => {
+        hamburgerMenu.classList.remove('open');
+        menuOverlay.classList.remove('open');
+    });
+
+    settingsBtn.addEventListener('click', () => {
+        settingsPopup.style.display = 'block';
+        menuOverlay.classList.add('open');
+    });
+
+    settingsCloseBtn.addEventListener('click', () => {
+        settingsPopup.style.display = 'none';
+        menuOverlay.classList.remove('open');
+    });
+
+    menuOverlay.addEventListener('click', () => {
+        settingsPopup.style.display = 'none';
+        menuOverlay.classList.remove('open');
+    });
+
+    modeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+            
+        if (document.body.classList.contains('light-mode')) {
+            modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    });
+
+    groupSelector.addEventListener('change', () => {
+        currentGroup = groupSelector.value;
+        currentIndex = 0;
+        updateImage();
+    });
+
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
+            const tabId = item.getAttribute('data-tab');
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            const randomDigit = Math.floor(Math.random() * 10);
+            window.location.hash = `#${randomDigit}`;
+        });
+    });
+    </script>
+    <!-- <script src="script1.js"></script> -->
+    <script src="script2.js"></script>
+    <script src="script3.js"></script>
+</body>
+</html>
