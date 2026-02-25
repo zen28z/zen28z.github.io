@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資スロット</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --panel: #0f1628;
+    --border: #1e3a5f;
+    --gold: #f0c040;
+    --green: #00e676;
+    --red: #ff1744;
+    --cyan: #00e5ff;
+    --text: #cfe4ff;
+    --dim: #4a6080;
+    --reel-bg: #060b18;
+    --reel-border: #2a4a70;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Noto Sans JP', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(0,100,200,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,200,150,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* ── ヘッダー ── */
+  .header-row {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(240,192,64,0.5);
+    text-align: center;
+  }
+
+  /* ── 歯車ボタン ── */
+  .gear-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #0f1e36, #0a1525);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    transition: all 0.25s;
+    color: var(--dim);
+    z-index: 10;
+  }
+
+  .gear-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 14px rgba(240,192,64,0.3);
+    transform: translateY(-50%) rotate(30deg);
+  }
+
+  .gear-btn.open {
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 14px rgba(240,192,64,0.3);
+    background: linear-gradient(135deg, #1a2e4a, #0f2035);
+  }
+
+  /* ── 設定パネル ── */
+  .settings-panel {
+    width: 100%;
+    max-width: 680px;
+    background: linear-gradient(135deg, #0c1a2e, #0a1525);
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    padding: 0 22px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease, margin-bottom 0.3s ease;
+    margin-bottom: 0;
+    box-shadow: 0 0 20px rgba(240,192,64,0.1);
+  }
+
+  .settings-panel.open {
+    max-height: 600px;
+    opacity: 1;
+    padding: 20px 22px;
+    margin-bottom: 22px;
+  }
+
+  .settings-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(240,192,64,0.2);
+  }
+
+  /* カテゴリ値入力グリッド */
+  .settings-cat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+    margin-bottom: 16px;
+  }
+
+  .settings-cat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .settings-cat-row label {
+    font-size: 0.68rem;
+    color: var(--dim);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .setting-input {
+    background: var(--reel-bg);
+    border: 1px solid var(--reel-border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    padding: 7px 10px;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .setting-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 8px rgba(240,192,64,0.2);
+  }
+
+  /* ロール時間スライダー行 */
+  .settings-slider-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+    margin-bottom: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .setting-item label {
+    font-size: 0.72rem;
+    color: var(--dim);
+    letter-spacing: 0.04em;
+  }
+
+  .setting-item label span {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.68rem;
+    color: var(--cyan);
+    margin-left: 4px;
+  }
+
+  .settings-note {
+    font-size: 0.67rem;
+    color: var(--dim);
+    line-height: 1.7;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 12px;
+  }
+
+  /* スライダー */
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--reel-border);
+    border-radius: 2px;
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--gold);
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(240,192,64,0.5);
+  }
+
+  /* ── カテゴリボタン ── */
+  .btn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 680px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    background: linear-gradient(135deg, #0f1e36, #0a1525);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--cyan);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(0.65rem, 1.5vw, 0.82rem);
+    font-weight: 700;
+    padding: 12px 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.12), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover::before { opacity: 1; }
+  .btn:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 0 14px rgba(0,229,255,0.25);
+    transform: translateY(-2px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 18px rgba(240,192,64,0.4);
+  }
+
+  /* ── カテゴリラベル ── */
+  .category-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8rem;
+    color: var(--dim);
+    letter-spacing: 0.15em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    min-height: 1.2em;
+    transition: color 0.3s;
+  }
+  .category-label.active {
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(240,192,64,0.4);
+  }
+
+  .spin-btn {
+    background: linear-gradient(135deg, #0a2a50, #0d3a6a);
+    border: 1px solid var(--cyan);
+    border-radius: 8px;
+    color: var(--cyan);
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 10px 22px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+    box-shadow: 0 0 12px rgba(0,229,255,0.15);
+  }
+  .spin-btn:hover {
+    background: linear-gradient(135deg, #0d3a6a, #0f4a80);
+    box-shadow: 0 0 20px rgba(0,229,255,0.35);
+    transform: translateY(-1px);
+  }
+  .spin-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* ── スロットマシン ── */
+  .machine {
+    background: linear-gradient(180deg, #0f1e36 0%, var(--panel) 100%);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 680px;
+    box-shadow: 0 0 40px rgba(0,100,200,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .machine::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 20%; right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* ── リールコンテナ ── */
+  .reels-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 110px;
+  }
+
+  /* 符号リール */
+  .reel-sign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .reel-sign .reel-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.55rem;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+  }
+
+  /* 数字リール */
+  .reel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .reel-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.55rem;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .reel-window {
+    width: 54px;
+    height: 80px;
+    background: var(--reel-bg);
+    border: 1px solid var(--reel-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.6), 0 0 8px rgba(0,100,200,0.1);
+  }
+  .reel-window::before, .reel-window::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 30%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .reel-window::before { top: 0; background: linear-gradient(to bottom, var(--reel-bg), transparent); }
+  .reel-window::after  { bottom: 0; background: linear-gradient(to top, var(--reel-bg), transparent); }
+
+  .reel-digit {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text);
+    text-shadow: 0 0 12px rgba(100,200,255,0.4);
+    position: relative;
+    z-index: 1;
+    transition: none;
+  }
+  .reel-digit.rolling { animation: rollDigit 0.08s steps(1) infinite; }
+  .reel-digit.land    { animation: landPop 0.3s ease-out forwards; }
+
+  @keyframes rollDigit {
+    10%  { opacity: 0.6; transform: translateY(-4px); }
+    50%  { opacity: 0.8; transform: translateY(4px); }
+    100% { opacity: 0.6; transform: translateY(-4px); }
+  }
+  @keyframes landPop {
+    0%   { transform: scale(1.3); color: var(--gold); text-shadow: 0 0 20px var(--gold); }
+    60%  { transform: scale(0.95); }
+    100% { transform: scale(1); color: var(--text); text-shadow: 0 0 12px rgba(100,200,255,0.4); }
+  }
+
+  /* 符号ウィンドウ */
+  .sign-window {
+    width: 54px;
+    height: 80px;
+    background: var(--reel-bg);
+    border: 1px solid var(--reel-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
+  }
+  .sign-char {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.6rem;
+    font-weight: 900;
+  }
+  .sign-char.plus  { color: var(--green); text-shadow: 0 0 16px var(--green); }
+  .sign-char.minus { color: var(--red);   text-shadow: 0 0 16px var(--red); }
+  .sign-char.yen  { color: var(--text); text-shadow: 0 0 16px var(--text); }
+  .sign-char.empty { color: var(--dim); }
+  .sign-char.land-sign { animation: landSign 0.4s ease-out forwards; }
+
+  @keyframes landSign {
+    0%   { transform: scale(1.5); opacity: 0; }
+    60%  { transform: scale(0.92); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  /* ── ステータスバー ── */
+  .status-bar {
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--dim);
+    min-height: 1.4em;
+    transition: color 0.3s;
+  }
+  .status-bar.playing  { color: var(--gold); }
+  .status-bar.done-pos { color: var(--green); }
+  .status-bar.done-neg { color: var(--red); }
+
+  /* ── 注記 ── */
+  .note {
+    margin-top: 18px;
+    font-size: 0.68rem;
+    color: var(--dim);
+    text-align: center;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<div class="header-row">
+  <h1>全ツッパずんだもん</h1>
+  <button class="gear-btn" id="gearBtn" title="設定">⚙</button>
+</div>
+
+<!-- 設定パネル -->
+<div class="settings-panel" id="settingsPanel">
+  <div class="settings-title">⚙ SETTINGS</div>
+
+  <!-- カテゴリ別数値入力 -->
+  <div class="settings-cat-grid">
+    <div class="settings-cat-row">
+      <label>NASDAQ100 前日比</label>
+      <input type="number" class="setting-input" id="val_nasdaq_daily" placeholder="例: -1234" step="any">
+    </div>
+    <div class="settings-cat-row">
+      <label>NASDAQ100 評価損益</label>
+      <input type="number" class="setting-input" id="val_nasdaq_pnl" placeholder="例: +56789" step="any">
+    </div>
+    <div class="settings-cat-row">
+      <label>FANG+ 前日比</label>
+      <input type="number" class="setting-input" id="val_fang_daily" placeholder="例: -1234" step="any">
+    </div>
+    <div class="settings-cat-row">
+      <label>FANG+ 評価損益</label>
+      <input type="number" class="setting-input" id="val_fang_pnl" placeholder="例: +56789" step="any">
+    </div>
+    <div class="settings-cat-row">
+      <label>評価損益率</label>
+      <input type="number" class="setting-input" id="val_pnl_rate" placeholder="例: 12" step="any">
+    </div>
+    <div class="settings-cat-row">
+      <label>評価損益</label>
+      <input type="number" class="setting-input" id="val_pnl_total" placeholder="例: +98765" step="any">
+    </div>
+  </div>
+
+  <!-- ロール時間スライダー -->
+  <div class="settings-slider-grid">
+    <div class="setting-item">
+      <label>各桁のロール時間：<span id="rollDurLabel">0.8</span> 秒</label>
+      <input type="range" id="rollDurSlider" min="0.2" max="5.0" step="0.1" value="0.8">
+    </div>
+    <div class="setting-item">
+      <label>符号のロール時間：<span id="signDurLabel">0.6</span> 秒</label>
+      <input type="range" id="signDurSlider" min="0.2" max="5.0" step="0.1" value="0.6">
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:flex-end;">
+    <button class="spin-btn" id="applyBtn" style="font-size:0.75rem;padding:8px 20px;">✔ 適用して閉じる</button>
+  </div>
+
+  <div class="settings-note" style="margin-top:12px;">
+    ※ ロール時間＝リールが回転する最低時間。音声ファイルが長い場合は音声終了まで待機します。
+  </div>
+</div>
+
+<!-- カテゴリボタン -->
+<div class="btn-grid">
+  <button class="btn" data-cat="nasdaq_daily">NASDAQ100<br>前日比</button>
+  <button class="btn" data-cat="nasdaq_pnl">NASDAQ100<br>評価損益</button>
+  <button class="btn" data-cat="fang_daily">FANG+<br>前日比</button>
+  <button class="btn" data-cat="fang_pnl">FANG+<br>評価損益</button>
+  <button class="btn" data-cat="pnl_rate">評価損益率</button>
+  <button class="btn" data-cat="pnl_total">評価損益</button>
+</div>
+
+<!-- スロット本体 -->
+<div class="machine">
+  <div class="reels-wrapper" id="reelsWrapper">
+    <div style="color:var(--dim);font-size:0.8rem;letter-spacing:0.1em;">ボタンを押してスロットを回してください</div>
+  </div>
+  <div class="status-bar" id="statusBar">READY</div>
+</div>
+
+<!--
+<p class="note">
+  音声ファイル：<code>1.wav, 10.wav, 100.wav, 1000.wav, 10000.wav, 100000.wav, 1000000.wav</code><br>
+  <code>plus.wav, minus.wav</code> を同じフォルダに置いてください
+</p>
+ -->
+
+<script>
+// ──────────────────────────────────
+// 設定値
+// ──────────────────────────────────
+let config = {
+  rollDuration: 0.8,
+  signDuration: 0.6,
+};
+
+// カテゴリごとの保存値
+const catValues = {
+  nasdaq_daily: '',
+  nasdaq_pnl:   '',
+  fang_daily:   '',
+  fang_pnl:     '',
+  pnl_rate:     '',
+  pnl_total:    '',
+};
+
+// ──────────────────────────────────
+// 歯車・設定パネル
+// ──────────────────────────────────
+const gearBtn       = document.getElementById('gearBtn');
+const settingsPanel = document.getElementById('settingsPanel');
+const rollDurSlider = document.getElementById('rollDurSlider');
+const signDurSlider = document.getElementById('signDurSlider');
+const rollDurLabel  = document.getElementById('rollDurLabel');
+const signDurLabel  = document.getElementById('signDurLabel');
+const applyBtn      = document.getElementById('applyBtn');
+
+gearBtn.addEventListener('click', () => {
+  const isOpen = settingsPanel.classList.toggle('open');
+  gearBtn.classList.toggle('open', isOpen);
+});
+
+rollDurSlider.addEventListener('input', () => {
+  rollDurLabel.textContent = parseFloat(rollDurSlider.value).toFixed(1);
+});
+signDurSlider.addEventListener('input', () => {
+  signDurLabel.textContent = parseFloat(signDurSlider.value).toFixed(1);
+});
+
+applyBtn.addEventListener('click', () => {
+  config.rollDuration = parseFloat(rollDurSlider.value);
+  config.signDuration = parseFloat(signDurSlider.value);
+
+  // カテゴリ別の数値を保存
+  Object.keys(catValues).forEach(cat => {
+    const el = document.getElementById('val_' + cat);
+    if (el) catValues[cat] = el.value.trim();
+  });
+
+  settingsPanel.classList.remove('open');
+  gearBtn.classList.remove('open');
+});
+
+// ──────────────────────────────────
+// カテゴリ名
+// ──────────────────────────────────
+const CAT_NAMES = {
+  nasdaq_daily: 'NASDAQ100 前日比',
+  nasdaq_pnl:   'NASDAQ100 評価損益',
+  fang_daily:   'FANG+ 前日比',
+  fang_pnl:     'FANG+ 評価損益',
+  pnl_rate:     '評価損益率',
+  pnl_total:    '評価損益',
+};
+
+let currentCat = null;
+let isSpinning = false;
+
+document.querySelectorAll('.btn').forEach(b => {
+  b.addEventListener('click', () => {
+    if (isSpinning) return; // スピン中は無視
+
+    currentCat = b.dataset.cat;
+    const val = catValues[currentCat];
+
+    if (val === '' || val === undefined) {
+      // 値が未設定の場合は設定パネルを開く
+      settingsPanel.classList.add('open');
+      gearBtn.classList.add('open');
+      // 対応する入力欄にフォーカス
+      const el = document.getElementById('val_' + currentCat);
+      if (el) { el.focus(); el.select(); }
+      return;
+    }
+
+    document.querySelectorAll('.btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+
+    document.getElementById('statusBar').className = 'status-bar';
+    document.getElementById('statusBar').textContent = 'READY';
+
+    startSpin(val);
+  });
+});
+
+// ──────────────────────────────────
+// 音声
+// ──────────────────────────────────
+const audioCache = {};
+
+function playAudio(filename) {
+  return new Promise(resolve => {
+    try {
+      if (!audioCache[filename]) audioCache[filename] = new Audio(filename);
+      const a = audioCache[filename].cloneNode();
+      a.onended = resolve;
+      a.onerror = resolve;
+      a.play().catch(resolve);
+    } catch(e) { resolve(); }
+  });
+}
+
+function digitPlaceFile(place) {
+  return Math.pow(10, place) + '.wav';
+}
+
+// ──────────────────────────────────
+// スピン
+// ──────────────────────────────────
+async function startSpin(rawVal) {
+  const val = parseFloat(rawVal);
+  if (isNaN(val)) { alert('有効な数値が設定されていません'); return; }
+
+  isSpinning = true;
+  document.querySelectorAll('.btn').forEach(b => b.disabled = true);
+
+  // 符号なし（0以上）は「+」扱い
+  const isNeg = val < 0;
+  const absInt = Math.abs(Math.round(val));
+
+  // 評価損益率なら%、それ以外は円
+  const showPercent = (currentCat === 'pnl_rate');
+  const showYen     = !showPercent;
+
+  // 桁分解（1の位から）
+  const digits = [];
+  if (absInt === 0) {
+    digits.push(0);
+  } else {
+    let n = absInt;
+    while (n > 0) { digits.push(n % 10); n = Math.floor(n / 10); }
+  }
+
+  buildReels(digits.length, showPercent, showYen);
+
+  const status = document.getElementById('statusBar');
+  status.className = 'status-bar playing';
+  status.textContent = '';
+
+  // 1の位→上位桁の順に確定
+  for (let i = 0; i < digits.length; i++) {
+    await revealDigit(i, digits[i], i);
+  }
+
+  // 符号（最上位桁の左）を確定
+  await revealSign(isNeg);
+
+  status.className = isNeg ? 'status-bar done-neg' : 'status-bar done-pos';
+  status.textContent = '  ' + (isNeg ? '' : '');
+
+  isSpinning = false;
+  document.querySelectorAll('.btn').forEach(b => b.disabled = false);
+}
+
+// ──────────────────────────────────
+// リール構築
+// 符号リールを先頭（一番左）に配置し、
+// 数字が全部確定してから表示する
+// showPercent: 1の位の右に%リールを追加
+// showYen:     1の位の右に円リールを追加
+// ──────────────────────────────────
+function buildReels(numDigits, showPercent, showYen) {
+  const wrapper = document.getElementById('reelsWrapper');
+  wrapper.innerHTML = '';
+
+  // 符号リール（一番左・初期は非表示）
+  wrapper.appendChild(createSignReel());
+
+  // 数字リール（上位桁から左→右）
+  for (let i = numDigits - 1; i >= 0; i--) {
+    const placeLabel = Math.pow(10, i).toLocaleString();
+    wrapper.appendChild(createDigitReel(i, placeLabel));
+
+    // 1の位（i===0）の直後に単位リールを挿入
+    if (i === 0) {
+      if (showPercent) wrapper.appendChild(createUnitReel('%'));
+      else if (showYen) wrapper.appendChild(createUnitReel('円'));
+    }
+  }
+}
+
+// function createDigitReel(index, placeLabel) {
+//   const div = document.createElement('div');
+//   div.className = 'reel';
+//   div.id = `reel-${index}`;
+//   div.innerHTML = `
+//     <div class="reel-label">${placeLabel}の位</div>
+//     <div class="reel-window">
+//       <div class="reel-digit" id="digit-${index}">?</div>
+//     </div>`;
+//   return div;
+// }
+
+function createDigitReel(index, placeLabel) {
+  // 数値を日本語の位表記に変換するマッピング
+  const kanjiMap = {
+    '1': '一',
+    '10': '十',
+    '100': '百',
+    '1000': '千',
+    '10000': '万',
+    '100000': '十万',
+    '1000000': '百万',
+    '10000000': '千万'
+  };
+
+  // 文字列にしてカンマを除去（1,000 等で渡された場合の対策）
+  const cleanLabel = String(placeLabel).replace(/,/g, '');
+  
+  // マッピングから該当する文字を取得（見つからない場合は元の値をそのまま表示）
+  const displayLabel = kanjiMap[cleanLabel] || placeLabel;
+
+  const div = document.createElement('div');
+  div.className = 'reel';
+  div.id = `reel-${index}`;
+  div.innerHTML = `
+    <div class="reel-label">${displayLabel}の位</div>
+    <div class="reel-window">
+      <div class="reel-digit" id="digit-${index}">?</div>
+    </div>`;
+  return div;
+}
+
+function createSignReel() {
+  const div = document.createElement('div');
+  div.className = 'reel-sign';
+  div.id = 'sign-reel';
+  div.style.visibility = 'hidden'; // 数字確定後に表示
+  div.innerHTML = `
+    <div class="reel-label"></div>
+    <div class="sign-window">
+      <div class="sign-char empty" id="sign-char">?</div>
+    </div>`;
+  return div;
+}
+
+function createUnitReel(symbol) {
+  const div = document.createElement('div');
+  div.className = 'reel-sign';
+  const fontSize = symbol === '円' ? '1.4rem' : '2rem';
+  div.innerHTML = `
+    <div class="reel-label"></div>
+    <div class="sign-window">
+      <div class="sign-char yen" style="font-size:${fontSize};">${symbol}</div>
+    </div>`;
+  return div;
+}
+
+// ──────────────────────────────────
+// 桁確定
+// ──────────────────────────────────
+async function revealDigit(reelIndex, digit, place) {
+  const el = document.getElementById(`digit-${reelIndex}`);
+  if (!el) return;
+
+  el.classList.add('rolling');
+  const rollInterval = setInterval(() => {
+    el.textContent = Math.floor(Math.random() * 10);
+  }, 80);
+
+  // ロール時間 と 音声 の長い方を待つ
+  await Promise.all([
+    sleep(config.rollDuration * 1000),
+    playAudio(digitPlaceFile(place)),
+  ]);
+
+  clearInterval(rollInterval);
+  el.classList.remove('rolling');
+  el.textContent = digit;
+  el.classList.add('land');
+
+  // 着地アニメは80msだけ待てば十分（アニメ自体は0.3sかかるが次の桁と並走でOK）
+  await sleep(80);
+  el.classList.remove('land');
+}
+
+// ──────────────────────────────────
+// 符号確定
+// ──────────────────────────────────
+async function revealSign(isNeg) {
+  // 符号リールをここで表示
+  const reel = document.getElementById('sign-reel');
+  if (reel) reel.style.visibility = 'visible';
+
+  const el = document.getElementById('sign-char');
+  if (!el) return;
+
+  const signs = ['+', '−'];
+  let t = 0;
+  const rollInterval = setInterval(() => {
+    el.textContent = signs[t++ % 2];
+    el.className = 'sign-char ' + (t % 2 === 0 ? 'plus' : 'minus');
+  }, 100);
+
+  // ロール時間だけ待ってから符号を確定 → 確定と同時に音声再生
+  await sleep(config.signDuration * 1000);
+
+  clearInterval(rollInterval);
+  el.textContent = isNeg ? '−' : '+';
+  el.className   = 'sign-char ' + (isNeg ? 'minus' : 'plus') + ' land-sign';
+
+  // 確定と同時に音声を鳴らす（再生完了は待たない）
+  playAudio(isNeg ? 'minus.wav' : 'plus.wav');
+
+  await sleep(400);
+}
+
+function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+</script>
+</body>
+</html>
