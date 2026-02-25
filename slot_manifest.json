@@ -1,0 +1,10 @@
+{
+  "name": "",
+  "short_name": "",
+  "start_url": "slot.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "icons": [
+    // ... アイコンの設定 ...
+  ]
+}
